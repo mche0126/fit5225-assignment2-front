@@ -1,0 +1,72 @@
+// Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap'); // footer-header-fonts
+
+// Fonts Variables
+$footer-header-fonts: 'Audiowide', cursive;
+
+// Theme Color Variables
+$dark-blue-color: #040F19;
+$light-blue-color: #394D7B;
+
+@mixin header-footer-theme {
+
+	background-color: $dark-blue-color;
+	h1 {
+		padding: 30px 20px 20px 30px;
+		font-family: $footer-header-fonts;
+		color: #fcfcfc;
+	}
+}
+
+
+.NavigationBar{
+	@include header-footer-theme();
+	padding: 0px;
+}
+
+.Footer{
+	@include header-footer-theme();
+	height: 300px;
+}
+
+.JcOnline{
+	background-color: $light-blue-color;
+	height: 80vh; // for test purpose
+}
+
+.App {
+  padding: 20px;
+  h2 {
+    text-align: center;
+    @include style(30px, #000, bold);
+    margin-bottom: 40px;
+  }
+  ul {
+    li {
+      list-style: none;
+      text-align: center;
+      line-height: 30px;
+      margin-bottom: 20px;
+      a {
+        border: 1px solid $borderColor;
+        display: inline-block;
+        padding: 10px;
+        border-radius: 5px;
+        color: #666;
+      }
+    }
+  }
+}
+* {
+  padding: 0;
+  margin: 0;
+}
+a {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+  text-decoration: none;
+}

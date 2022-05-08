@@ -1,10 +1,29 @@
-# FIT5225-assignment2-front
-React-ts front end project for fit5225 assignment2.
+# README #
 
-## Tech stack 
-- **Framework:** React Typescript
-- **Style:** scss 
-- **Build Package:** Vite/Webpack
-- **Formater:** EsLint, Prettier
+This README would normally document whatever steps are necessary to get your application up and running.
 
+### What is this repository for? ###
 
+* Quick summary
+* Version
+* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+
+### How do I get set up? ###
+
+* Summary of set up
+* Configuration
+* Dependencies
+* Database configuration
+* How to run tests
+* Deployment instructions
+
+### Contribution guidelines ###
+
+* Writing tests
+* Code review
+* Other guidelines
+
+### Who do I talk to? ###
+
+* Repo owner or admin
+* Other community or team contact

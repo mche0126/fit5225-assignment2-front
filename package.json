@@ -1,0 +1,50 @@
+{
+    "name": "fit5225-assignment2-front",
+    "private": true,
+    "version": "0.0.1",
+    "scripts": {
+        "dev": "vite --mode dev",
+        "build:prod": "version-select && vite build --mode prod",
+        "lint": "eslint ./src --ext .jsx,.js,.ts,.tsx",
+        "format": "prettier  --loglevel warn --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\"",
+        "lint:fix": "eslint ./src --ext .jsx,.js,.ts,.tsx --fix && prettier --loglevel warn --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\""
+    },
+    "dependencies": {
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "react-icons": "^4.3.1"
+    },
+    "devDependencies": {
+        "@types/node": "^17.0.23",
+        "@types/node-sass": "^4.11.2",
+        "@types/react": "^17.0.33",
+        "@types/react-dom": "^17.0.10",
+        "@types/react-redux": "^7.1.23",
+        "@typescript-eslint/eslint-plugin": "^5.18.0",
+        "@typescript-eslint/parser": "^5.18.0",
+        "@vitejs/plugin-react": "^1.0.7",
+        "@vitejs/plugin-react-refresh": "^1.3.6",
+        "bootstrap": "^5.1.3",
+        "eslint": "^8.12.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-import": "^2.26.0",
+        "eslint-plugin-jsx-a11y": "^6.5.1",
+        "eslint-plugin-prettier": "^4.0.0",
+        "eslint-plugin-react": "^7.29.4",
+        "eslint-plugin-react-hooks": "^4.4.0",
+        "eslint-plugin-simple-import-sort": "^7.0.0",
+        "path": "^0.12.7",
+        "prettier": "^2.6.2",
+        "react-bootstrap": "^2.2.3",
+        "react-redux": "^7.2.8",
+        "react-router": "^6.3.0",
+        "react-router-dom": "^6.3.0",
+        "rollup-plugin-visualizer": "^5.6.0",
+        "sass": "^1.49.11",
+        "styled-components": "^5.3.5",
+        "typescript": "^4.6.3",
+        "version-select": "^1.0.13",
+        "vite": "^2.9.1",
+        "vite-plugin-checker": "^0.4.5"
+    }
+}
