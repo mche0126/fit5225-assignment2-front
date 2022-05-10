@@ -1,0 +1,35 @@
+.Footer{
+	width: 100%;
+	height: auto;
+	min-height: 60px;
+	max-height: 45%;
+	position: fixed;
+	bottom: 0;
+	background-color: hsl(210, 11%, 15%);
+	padding: auto;
+}
+
+@mixin footer_block {
+	margin-top: 10%;
+	margin-bottom: 15%;
+	max-height: 70%
+}
+
+@mixin footer_text_color {
+	color: #9B9D9E;
+}
+
+.footer_text{
+	list-style: none;
+	@include footer_text_color();
+}
+
+.footer_ul{
+	font-weight: bolder;
+	@include footer_text_color();
+}
+
+.footer_logo{
+	@include footer_block();
+	height: auto;
+}
