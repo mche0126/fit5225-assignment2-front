@@ -4,6 +4,7 @@
 		"paths": {
 			"@/*": ["src/*"]
 		},
+		"strictNullChecks": false,
 		"types": ["vite/client"],
 		"target": "ESNext",
 		"useDefineForClassFields": true,

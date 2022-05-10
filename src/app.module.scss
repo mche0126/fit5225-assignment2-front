@@ -31,5 +31,19 @@
 
 .footer_logo{
 	@include footer_block();
+	max-width: 25vh;
 	height: auto;
+}
+
+.footer_col{
+	@include footer_block();
+	height: auto;
+}
+
+
+.page_title{
+	text-align: center;
+	font-size: larger;
+	font-weight: bolder;
+	margin-top: 2%;
 }

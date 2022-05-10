@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Home from '@/pages/home/Home';
+import Upload from '@/pages/upload/Upload';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
@@ -12,6 +13,7 @@ ReactDOM.render(
     <NavigationBar />
     <BrowserRouter>
       <Routes>
+        <Route path="upload" element={<Upload />} />
         <Route path="*" element={<Home />} />
       </Routes>
     </BrowserRouter>

@@ -20,7 +20,7 @@ export default class Footer extends Component {
               <Col sm={8}>
                 <Row>
                   <Col>
-                    <div className={style.footer_logo}>
+                    <div className={style.footer_col}>
                       <h4 className={style.footer_text}>
                         FIT5225 Assignment 2
                       </h4>
