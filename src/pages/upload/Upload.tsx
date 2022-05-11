@@ -24,8 +24,7 @@ const Upload = function () {
             .replace(/^data:image\/(svg|jpeg|png|jpg);base64,/, '');
           console.log(base64);
 
-          //TODO: add axio call to backend from here
-
+          // TODO: add axio call to backend from here
         };
         reader.readAsDataURL(file);
       }
@@ -39,9 +38,11 @@ const Upload = function () {
       <div {...getRootProps()}>
         <input {...getInputProps()} />
         {isDragActive ? (
-          <p>Drop the files here</p>
+          <p className={style.Uploader}>Drop the files here</p>
         ) : (
-          <p>Drag and drop some files here, or click to select files</p>
+          <p className={style.Uploader}>
+            Drag and drop some files here, or click to select files
+          </p>
         )}
       </div>
     </>
