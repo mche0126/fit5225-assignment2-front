@@ -6,6 +6,7 @@
     "prettier.tabWidth": 2,
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
+    "endOfLine":"lf",
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
