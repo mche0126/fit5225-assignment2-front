@@ -3,6 +3,8 @@ import { Button, PageHeader, message, Image, Row, Col } from 'antd';
 import DragInPicture from '@/components/uploadPic/DragInPicture';
 import ResultList from '@/components/detect/ResultList';
 
+import { iWebLens } from '@/components/detect/iWebLensCall';
+
 const success = () => {
   message.success('This is a success message');
 };
@@ -20,7 +22,7 @@ export default function Detect() {
     setCurrent(current - 1);
   };
 
-  let data = ['human', 'coffee'];
+  let data = iWebLens({ id: 'uuid' });
 
   return (
     <div>
@@ -30,7 +32,7 @@ export default function Detect() {
         subTitle="Upload an image to detect objects"
       />
       <div>
-        {current === 0 ? (
+        {current === 0 && (
           <div>
             <DragInPicture />
             <div style={{ marginTop: '20px' }}>
@@ -39,7 +41,9 @@ export default function Detect() {
               </Button>
             </div>
           </div>
-        ) : (
+        )}
+        {current === 1 && (
+          // TODO: change this to alert once complete test
           <div>
             <Row>
               <Col span={12}>
