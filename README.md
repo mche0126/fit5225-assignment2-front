@@ -11,11 +11,22 @@ This README would normally document whatever steps are necessary to get your app
 ### How do I get set up? ###
 
 * Summary of set up
+After clone the repository into your local, use command
+```bash
+npm run dev
+```
+to run the code. The code should be able to run it self, however it's on port 4000 which is different from our default port.
+
 * Configuration
-* Dependencies
-* Database configuration
-* How to run tests
+Environment configurations are avaliable, in .env file. Use import.meta.env to import environment configurations to the code.
+
 * Deployment instructions
+The code support with Eslint and Prettier. Make sure run:
+```bash
+npm run lint:fix
+```
+before bush or build 
+
 
 ### Contribution guidelines ###
 
