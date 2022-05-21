@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'antd/dist/antd.css';
 import { Switch, Route, Redirect } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
-import Home from './pages/home/home';
+import Home from './pages/home/Home';
 
 import Login from './pages/login/Login';
 import LoginSuccess from './pages/login/LoginSuccess';
