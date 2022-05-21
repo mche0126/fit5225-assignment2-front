@@ -30,7 +30,7 @@ export default function Detect() {
         subTitle="Upload an image to detect objects"
       />
       <div>
-        {current === 0 && (
+        {current === 0 ? (
           <div>
             <DragInPicture />
             <div style={{ marginTop: '20px' }}>
@@ -39,8 +39,7 @@ export default function Detect() {
               </Button>
             </div>
           </div>
-        )}
-        {current === 1 && (
+        ) : (
           <div>
             <Row>
               <Col span={12}>
