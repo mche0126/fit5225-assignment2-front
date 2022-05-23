@@ -32,8 +32,10 @@ const DragInPicture = () => {
       };
     }).then(() => {
       console.log(base64image);
+      let objectDetectionURL: string =
+        import.meta.env.VITE_IMAGE_RECOGNITION_URL.toString();
       axios
-        .post(import.meta.env.VITE_IMAGE_RECOGNITION_URL.toString(), {
+        .post(objectDetectionURL, {
           id: 'hello',
           image: base64image,
         })
