@@ -4,7 +4,7 @@ import { InboxOutlined } from '@ant-design/icons';
 import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
 import axios from 'axios';
 
-const DragInPicture = () => {
+export default function DragInPicture(props: any) {
   const [fileList, setFileList] = useState<UploadFile[]>([]);
   const [uploading, setUploading] = useState(false);
   const { Dragger } = Upload;
@@ -31,7 +31,7 @@ const DragInPicture = () => {
         }
       };
     }).then(() => {
-      console.log(base64image);
+      console.log('start post');
       let objectDetectionURL: string =
         import.meta.env.VITE_IMAGE_RECOGNITION_URL.toString();
       axios
@@ -41,6 +41,7 @@ const DragInPicture = () => {
         })
         .then((res) => {
           console.log(res);
+          props.callback(res, base64image);
         })
         .then(() => {
           let newFilelist: any[];
@@ -57,7 +58,7 @@ const DragInPicture = () => {
     });
   };
 
-  const props: UploadProps = {
+  const uploadProps: UploadProps = {
     onRemove: (file) => {
       const index = fileList.indexOf(file);
       const newFileList = fileList.slice();
@@ -74,7 +75,7 @@ const DragInPicture = () => {
 
   return (
     <div>
-      <Dragger {...props}>
+      <Dragger {...uploadProps}>
         <p className="ant-upload-drag-icon">
           <InboxOutlined />
         </p>
@@ -95,6 +96,4 @@ const DragInPicture = () => {
       </Button>
     </div>
   );
-};
-
-export default DragInPicture;
+}
