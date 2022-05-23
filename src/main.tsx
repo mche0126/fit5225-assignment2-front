@@ -14,16 +14,12 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Switch>
-        <Route path="/login" component={Login} />
         <Route path="/loginSuccess" component={LoginSuccess} />
+        <Route path="/login" component={Login} />
         <Route
           path="/"
           render={() =>
-            localStorage.getItem('token') ? (
-              <Home></Home>
-            ) : (
-              <Redirect to="/login" />
-            )
+            localStorage.getItem('token') ? <Home /> : <Redirect to="/login" />
           }
         />
       </Switch>
