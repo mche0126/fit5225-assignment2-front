@@ -1,46 +1,98 @@
-import React from 'react';
-import { Upload, message } from 'antd';
+import React, { useState } from 'react';
+import { Upload, Button, message } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
+import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
+import axios from 'axios';
 
-const { Dragger } = Upload;
+const DragInPicture = () => {
+  const [fileList, setFileList] = useState<UploadFile[]>([]);
+  const [uploading, setUploading] = useState(false);
+  const { Dragger } = Upload;
 
-const props = {
-  name: 'file',
-  multiple: true,
-  action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
-  beforeUpload: (file: { type: string; name: any }) => {
-    const isImg = file.type === 'image/png' || file.type === 'image/jpeg';
-    if (!isImg) {
-      message.error(`${file.name} is not a png or jpg file`);
-    }
-    return isImg || Upload.LIST_IGNORE;
-  },
-  onChange(info: { file: { name?: any; status?: any }; fileList: any }) {
-    const { status } = info.file;
-    if (status !== 'uploading') {
-      console.log(info.file, info.fileList);
-    }
-    if (status === 'done') {
-      message.success(`${info.file.name} file uploaded successfully.`);
-    } else if (status === 'error') {
-      message.error(`${info.file.name} file upload failed.`);
-    }
-  },
-  onDrop(e: { dataTransfer: { files: any } }) {
-    console.log('Dropped files', e.dataTransfer.files);
-  },
+  const handleUpload = () => {
+    const formData = new FormData();
+    const reader = new FileReader();
+    fileList.forEach((file) => {
+      formData.append('files[]', file.originFileObj as RcFile);
+      // @ts-ignore
+      reader.readAsDataURL(file);
+    });
+    setUploading(true);
+
+    let base64image: string = '';
+    // eslint-disable-next-line no-unused-vars
+    const promise = new Promise<void>(function (resolve, reject) {
+      reader.onload = function (e) {
+        if (typeof e.target.result === 'string') {
+          base64image = e.target.result.split('base64,')[1];
+          resolve();
+        } else {
+          reject();
+        }
+      };
+    }).then(() => {
+      console.log(base64image);
+      axios
+        .post(import.meta.env.VITE_IMAGE_RECOGNITION_URL.toString(), {
+          id: 'hello',
+          image: base64image,
+        })
+        .then((res) => {
+          console.log(res);
+        })
+        .then(() => {
+          let newFilelist: any[];
+          newFilelist = [];
+          setFileList(newFilelist);
+          message.success('detect successfully.');
+        })
+        .catch(() => {
+          message.error('detect failed.');
+        })
+        .finally(() => {
+          setUploading(false);
+        });
+    });
+  };
+
+  const props: UploadProps = {
+    onRemove: (file) => {
+      const index = fileList.indexOf(file);
+      const newFileList = fileList.slice();
+      newFileList.splice(index, 1);
+      setFileList(newFileList);
+    },
+    beforeUpload: (file) => {
+      setFileList([...fileList, file]);
+
+      return false;
+    },
+    fileList,
+  };
+
+  return (
+    <div>
+      <Dragger {...props}>
+        <p className="ant-upload-drag-icon">
+          <InboxOutlined />
+        </p>
+        <p className="ant-upload-text">
+          Click or drag file to this area to upload
+        </p>
+        <p className="ant-upload-hint">Only accept .png/.jpg files</p>
+      </Dragger>
+
+      <Button
+        type="primary"
+        onClick={handleUpload}
+        disabled={fileList.length === 0}
+        loading={uploading}
+        style={{ marginTop: 16 }}
+      >
+        {uploading ? 'Uploading' : 'Start Upload'}
+      </Button>
+    </div>
+  );
 };
 
-export default function DragInPicture() {
-  return (
-    <Dragger {...props} maxCount={1}>
-      <p className="ant-upload-drag-icon">
-        <InboxOutlined />
-      </p>
-      <p className="ant-upload-text">
-        Click or drag file to this area to upload
-      </p>
-      <p className="ant-upload-hint">Only accept .png/.jpg files</p>
-    </Dragger>
-  );
-}
+export default DragInPicture;
