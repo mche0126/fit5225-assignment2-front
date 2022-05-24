@@ -4,19 +4,19 @@ import { Table, Tag, Space } from 'antd';
 const columns = [
   {
     title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
+    dataIndex: 'id',
+    key: 'id',
     render: (text: string) => <a>{text}</a>,
   },
   {
     title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
+    dataIndex: 'url',
+    key: 'url',
   },
   {
     title: 'Tags',
-    key: 'tags',
-    dataIndex: 'tags',
+    key: 'tag',
+    dataIndex: 'tag',
     render: (tags: string[]) => (
       <>
         {tags.map((tag: string) => {
@@ -36,18 +36,9 @@ const columns = [
   {
     title: 'Action',
     key: 'action',
-    render: (
-      text: string,
-      record: {
-        name:
-          | boolean
-          | React.ReactChild
-          | React.ReactFragment
-          | React.ReactPortal;
-      },
-    ) => (
+    render: () => (
       <Space size="middle">
-        <a>Invite {record.name}</a>
+        <a>Edit</a>
         <a>Delete</a>
       </Space>
     ),

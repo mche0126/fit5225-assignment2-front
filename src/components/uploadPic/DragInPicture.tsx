@@ -66,7 +66,10 @@ export default function DragInPicture(props: any) {
       setFileList(newFileList);
     },
     beforeUpload: (file) => {
-      setFileList([...fileList, file]);
+      // Single file
+      setFileList([file]);
+      // Multiple file
+      // setFileList([...fileList, file]);
 
       return false;
     },

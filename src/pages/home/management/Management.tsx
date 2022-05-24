@@ -1,35 +1,28 @@
 import NiceTable from '@/components/management/NiceTable';
 import { PageHeader } from 'antd';
-import React from 'react';
-
-const data = [
-  {
-    key: '1',
-    name: 'John Brown',
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer'],
-  },
-  {
-    key: '2',
-    name: 'Jim Green',
-    address: 'London No. 1 Lake Park',
-    tags: ['loser'],
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    address: 'Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
-  {
-    key: '888',
-    name: '000027365124.jpg',
-    address: 'https://miro.medium.com/max/356/1*EnF9uIN_u2_X7ey24lB7Tg.png',
-    tags: ['human', 'gun'],
-  },
-];
+import React, { useState } from 'react';
+import axios from 'axios';
 
 export default function Management() {
+  // const [current, setCurrent] = useState(0);
+  const [data, setData] = useState([
+    {
+      id: 'Fetching data',
+      url: 'Please wait',
+      tag: ['Thank you'],
+    },
+  ]);
+
+  const fetchData = () => {
+    let scanImageURL: string = import.meta.env.VITE_IMAGE_SCAN.toString();
+    axios.get(scanImageURL).then((res) => {
+      console.log(res);
+      setData(res.data);
+    });
+  };
+
+  // fetchData();
+
   return (
     <div>
       <PageHeader

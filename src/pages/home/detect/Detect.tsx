@@ -4,6 +4,19 @@ import DragInPicture from '@/components/uploadPic/DragInPicture';
 import ResultList from '@/components/detect/ResultList';
 import axios from 'axios';
 
+// generate a mock UUID (simple random string)
+// Source: https://juejin.cn/post/6844903943693139982
+// Author: 趁你还年轻233
+function randomString(length: number) {
+  const chars =
+    '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_=-';
+  let result = '';
+  for (let i = length; i > 0; --i) {
+    result += chars[Math.floor(Math.random() * chars.length)];
+  }
+  return result;
+}
+
 // eslint-disable-next-line no-unused-vars
 export default function Detect(this: any) {
   const [current, setCurrent] = useState(0);
@@ -11,14 +24,12 @@ export default function Detect(this: any) {
   const [base64image, setBase64image] = useState('');
 
   // Cancel upload, clear the image and detect result. Page go back to stage 0
-
   const uploadCancel = () => {
     setCurrent(0);
     setData([]);
   };
 
   // A callback function to get detect result and image
-
   const detect = (response: { data: { label: any } }, image: string) => {
     setCurrent(1);
     setBase64image(image);
@@ -28,7 +39,6 @@ export default function Detect(this: any) {
   };
 
   // confirm upload and send image to S3 bucket by a Post method
-
   const uploadConfirm = () => {
     let uploadImageURL: string = import.meta.env.VITE_IMAGE_UPLOAD.toString();
     // let body = JSON.stringify({
@@ -42,7 +52,7 @@ export default function Detect(this: any) {
       .post(
         uploadImageURL,
         {
-          id: 'hello',
+          id: randomString(8),
           image: base64image,
           tag: data,
         },
@@ -52,8 +62,11 @@ export default function Detect(this: any) {
           },
         },
       )
-      .then(() => {
+      .then((res) => {
+        console.log(res);
         message.success('upload successfully.');
+        setCurrent(0);
+        setData([]);
       })
       .catch(() => {
         message.error('upload failed.');
