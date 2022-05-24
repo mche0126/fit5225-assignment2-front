@@ -31,19 +31,27 @@ export default function Detect(this: any) {
 
   const uploadConfirm = () => {
     let uploadImageURL: string = import.meta.env.VITE_IMAGE_UPLOAD.toString();
-    let body = JSON.stringify({
-      id: 'hello',
-      image: base64image,
-      tag: data,
-    });
+    // let body = JSON.stringify({
+    //   id: 'hello',
+    //   image: base64image,
+    //   tag: data,
+    // });
 
     console.log('upload start');
     axios
-      .post(uploadImageURL, body, {
-        headers: {
-          'content-type': 'text/json',
+      .post(
+        uploadImageURL,
+        {
+          id: 'hello',
+          image: base64image,
+          tag: data,
         },
-      })
+        {
+          headers: {
+            'content-type': 'text/plain',
+          },
+        },
+      )
       .then(() => {
         message.success('upload successfully.');
       })
