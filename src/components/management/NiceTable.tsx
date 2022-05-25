@@ -153,11 +153,10 @@ export default function NiceTable() {
   }
   // const [count, setCount] = useState(2);
 
-  function unique (arr: string[]) {
-    return Array.from(new Set(arr))
+  function unique(arr: string[]) {
+    return Array.from(new Set(arr));
   }
 
-  // TODO: delete the data in database
   const handleDelete = (url: string) => {
     console.log('delete request posted' + { url });
     let deleteImageURL: string = import.meta.env.VITE_IMAGE_DELETE.toString();

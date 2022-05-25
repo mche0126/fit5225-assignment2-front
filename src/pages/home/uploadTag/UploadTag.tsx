@@ -14,6 +14,7 @@ const contentStyle = {
 
 export default function UploadTag() {
   const [current, setCurrent] = useState(0);
+  const [data, setData] = useState([]);
 
   // set the current, destroy the upload elements, display the result elements
   // param:msg a callback could get the data inside the form
@@ -21,18 +22,17 @@ export default function UploadTag() {
     console.log(msg);
     success();
     setCurrent(current + 1);
+
+    let newData: string[] = [];
+    msg.map((record: any) => {
+      newData.push(record.url);
+    });
+    setData(newData);
   };
 
   const uploadAnother = () => {
     setCurrent(current - 1);
   };
-
-  let data = [
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYQY0vUTJwftJ8WqXoLiLeB--2MJkpZLpYOA&usqp=CAU',
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA45aLctefcJZt9LqfCNfGcTelNzbGMYLMJA&usqp=CAU',
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzronxEHP-KfhVOluJdzqDOo5LE7eKeT5LyQ&usqp=CAU',
-    'https://rmrbcmsonline.peopleapp.com/upload/zw/bjh_image/1625801632_964cd23e1ed0ebe9b41c37c59ec653a3.jpeg?x-oss-process=style/w10',
-  ];
 
   return (
     <div>

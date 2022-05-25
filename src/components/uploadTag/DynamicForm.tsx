@@ -2,6 +2,7 @@ import React from 'react';
 import { Form, Input, Button } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import './dynamicForm.css';
+import axios from 'axios';
 
 const formItemLayout = {
   labelCol: {
@@ -22,9 +23,26 @@ const formItemLayoutWithOutLabel = {
 };
 
 export default function DynamicForm(props: any) {
-  const onFinish = (values: any) => {
+  const onFinish = (values: string[]) => {
     // console.log('Received values of form:', values);
-    props.callback(values);
+    let searchByTagURL: string = import.meta.env.VITE_SEARCH_IMAGE.toString();
+    axios
+      .post(
+        searchByTagURL,
+        {
+          tag: values,
+        },
+        {
+          headers: {
+            'content-type': 'text/json',
+            Authorization: localStorage.getItem('access-token'),
+          },
+        },
+      )
+      .then((res) => {
+        console.log(res.data.data[0]);
+        props.callback(res.data.data[0]);
+      });
   };
 
   return (
