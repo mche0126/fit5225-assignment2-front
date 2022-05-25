@@ -53,8 +53,7 @@ export default function DragInPicture(props: any) {
           props.callback(res, base64image);
         })
         .then(() => {
-          let newFilelist: any[];
-          newFilelist = [];
+          let newFilelist: any = [];
           setFileList(newFilelist);
           message.success('detect successfully.');
         })

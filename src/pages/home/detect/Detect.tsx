@@ -21,9 +21,7 @@ export default function Detect(this: any) {
   const detect = (response: { data: { label: any } }, image: string) => {
     setCurrent(1);
     setBase64image(image);
-    if (typeof response.data.label === 'string') {
-      setData([response.data.label]);
-    }
+    setData([response.data.label]);
   };
 
   // confirm upload and send image to S3 bucket by a Post method
