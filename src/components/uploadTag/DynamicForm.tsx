@@ -23,18 +23,18 @@ const formItemLayoutWithOutLabel = {
 };
 
 export default function DynamicForm(props: any) {
-  const onFinish = (values: string[]) => {
+  const onFinish = (values: any) => {
     // console.log('Received values of form:', values);
     let searchByTagURL: string = import.meta.env.VITE_SEARCH_IMAGE.toString();
     axios
       .post(
         searchByTagURL,
         {
-          tag: values,
+          tag: values.tags,
         },
         {
           headers: {
-            'content-type': 'text/json',
+            'content-type': 'text/plain',
             Authorization: localStorage.getItem('access-token'),
           },
         },
