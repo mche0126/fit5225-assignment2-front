@@ -35,10 +35,19 @@ export default function DragInPicture(props: any) {
       let objectDetectionURL: string =
         import.meta.env.VITE_IMAGE_RECOGNITION_URL.toString();
       axios
-        .post(objectDetectionURL, {
-          id: 'hello',
-          image: base64image,
-        })
+        .post(
+          objectDetectionURL,
+          {
+            id: 'hello',
+            image: base64image,
+          },
+          {
+            headers: {
+              'content-type': 'text/json',
+              Authorization: localStorage.getItem('access-token'),
+            },
+          },
+        )
         .then((res) => {
           console.log(res);
           props.callback(res, base64image);
@@ -66,7 +75,10 @@ export default function DragInPicture(props: any) {
       setFileList(newFileList);
     },
     beforeUpload: (file) => {
-      setFileList([...fileList, file]);
+      // Single file
+      setFileList([file]);
+      // Multiple file
+      // setFileList([...fileList, file]);
 
       return false;
     },

@@ -3,6 +3,7 @@ import { Button, PageHeader, Image, Row, Col, message } from 'antd';
 import DragInPicture from '@/components/uploadPic/DragInPicture';
 import ResultList from '@/components/detect/ResultList';
 import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
 
 // eslint-disable-next-line no-unused-vars
 export default function Detect(this: any) {
@@ -11,14 +12,12 @@ export default function Detect(this: any) {
   const [base64image, setBase64image] = useState('');
 
   // Cancel upload, clear the image and detect result. Page go back to stage 0
-
   const uploadCancel = () => {
     setCurrent(0);
     setData([]);
   };
 
   // A callback function to get detect result and image
-
   const detect = (response: { data: { label: any } }, image: string) => {
     setCurrent(1);
     setBase64image(image);
@@ -28,7 +27,6 @@ export default function Detect(this: any) {
   };
 
   // confirm upload and send image to S3 bucket by a Post method
-
   const uploadConfirm = () => {
     let uploadImageURL: string = import.meta.env.VITE_IMAGE_UPLOAD.toString();
     // let body = JSON.stringify({
@@ -42,18 +40,22 @@ export default function Detect(this: any) {
       .post(
         uploadImageURL,
         {
-          id: 'hello',
+          id: uuidv4(),
           image: base64image,
           tag: data,
         },
         {
           headers: {
             'content-type': 'text/plain',
+            Authorization: localStorage.getItem('access-token'),
           },
         },
       )
-      .then(() => {
+      .then((res) => {
+        console.log(res);
         message.success('upload successfully.');
+        setCurrent(0);
+        setData([]);
       })
       .catch(() => {
         message.error('upload failed.');
