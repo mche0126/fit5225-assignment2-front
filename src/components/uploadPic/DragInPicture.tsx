@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Upload, Button, message } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
 import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
+import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 
 export default function DragInPicture(props: any) {
@@ -38,7 +39,7 @@ export default function DragInPicture(props: any) {
         .post(
           objectDetectionURL,
           {
-            id: 'hello',
+            id: uuidv4(),
             image: base64image,
           },
           {
