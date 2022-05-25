@@ -153,6 +153,10 @@ export default function NiceTable() {
   }
   // const [count, setCount] = useState(2);
 
+  function unique (arr: string[]) {
+    return Array.from(new Set(arr))
+  }
+
   // TODO: delete the data in database
   const handleDelete = (url: string) => {
     console.log('delete request posted' + { url });
@@ -161,7 +165,7 @@ export default function NiceTable() {
       .post(
         deleteImageURL,
         {
-          s3url: [url],
+          s3url: unique([url]),
         },
         {
           headers: {
@@ -176,7 +180,7 @@ export default function NiceTable() {
         console.log(error);
         if (error.code === 'ERR_NETWORK') {
           const newData = dataSource.filter((item) => item.url !== url);
-          message.success('delete successfully.');
+          message.success('delete error.');
           setDataSource(newData);
         }
       });
@@ -202,7 +206,7 @@ export default function NiceTable() {
       editable: true,
       render: (tag) => (
         <>
-          {tag.map((t: string) => {
+          {unique(tag).map((t: string) => {
             let color = tag.length > 5 ? 'geekblue' : 'green';
             return (
               <Tag color={color} key={t}>
