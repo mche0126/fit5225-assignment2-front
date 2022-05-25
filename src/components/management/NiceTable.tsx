@@ -133,7 +133,12 @@ export default function NiceTable() {
     setDataIsUpToDate(1);
     let scanImageURL: string = import.meta.env.VITE_IMAGE_SCAN.toString();
     axios
-      .get(scanImageURL)
+      .get(scanImageURL, {
+        headers: {
+          'content-type': 'text/json',
+          Authorization: localStorage.getItem('id-token'),
+        },
+      })
       .then((res) => {
         console.log(res);
         setDataSource(res.data);

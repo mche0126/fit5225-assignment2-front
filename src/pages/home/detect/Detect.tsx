@@ -47,6 +47,7 @@ export default function Detect(this: any) {
         {
           headers: {
             'content-type': 'text/plain',
+            Authorization: localStorage.getItem('access-token'),
           },
         },
       )

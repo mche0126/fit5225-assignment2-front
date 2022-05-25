@@ -19,7 +19,11 @@ ReactDOM.render(
         <Route
           path="/"
           render={() =>
-            localStorage.getItem('token') ? <Home /> : <Redirect to="/login" />
+            localStorage.getItem('access-token') ? (
+              <Home />
+            ) : (
+              <Redirect to="/login" />
+            )
           }
         />
       </Switch>
