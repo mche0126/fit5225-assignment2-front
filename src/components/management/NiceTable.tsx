@@ -175,9 +175,6 @@ export default function NiceTable() {
           },
         },
       )
-      .then((res) => {
-        console.log(res);
-      })
       .catch((error) => {
         console.log(error);
         if (error.code === 'ERR_NETWORK') {
@@ -185,6 +182,9 @@ export default function NiceTable() {
           message.success('delete error.');
           setDataSource(newData);
         }
+      })
+      .then((res) => {
+        console.log(res);
       });
   };
 
