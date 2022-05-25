@@ -21,17 +21,17 @@ export default function Detect(this: any) {
   const detect = (response: { data: { label: any } }, image: string) => {
     setCurrent(1);
     setBase64image(image);
-    setData([response.data.label]);
+    let newData: string[] = [];
+    response.data.label.map((d: string) => {
+      newData.push(d);
+    });
+    console.log(newData);
+    setData(newData);
   };
 
   // confirm upload and send image to S3 bucket by a Post method
   const uploadConfirm = () => {
     let uploadImageURL: string = import.meta.env.VITE_IMAGE_UPLOAD.toString();
-    // let body = JSON.stringify({
-    //   id: 'hello',
-    //   image: base64image,
-    //   tag: data,
-    // });
 
     console.log('upload start');
     axios

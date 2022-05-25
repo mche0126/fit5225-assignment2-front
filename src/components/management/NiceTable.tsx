@@ -1,4 +1,4 @@
-import { Form, Input, Popconfirm, Table, Tag } from 'antd';
+import { Form, Input, message, Popconfirm, Table, Tag } from 'antd';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import type { InputRef } from 'antd';
 import type { FormInstance } from 'antd/lib/form';
@@ -153,14 +153,18 @@ export default function NiceTable() {
   }
   // const [count, setCount] = useState(2);
 
-  // TODO: delete the data in database
+  function unique(arr: string[]) {
+    return Array.from(new Set(arr));
+  }
+
   const handleDelete = (url: string) => {
+    console.log('delete request posted' + { url });
     let deleteImageURL: string = import.meta.env.VITE_IMAGE_DELETE.toString();
     axios
       .post(
         deleteImageURL,
         {
-          s3url: url,
+          s3url: unique([url]),
         },
         {
           headers: {
@@ -173,9 +177,12 @@ export default function NiceTable() {
       })
       .catch((error) => {
         console.log(error);
+        if (error.code === 'ERR_NETWORK') {
+          const newData = dataSource.filter((item) => item.url !== url);
+          message.success('delete error.');
+          setDataSource(newData);
+        }
       });
-    const newData = dataSource.filter((item) => item.url !== url);
-    setDataSource(newData);
   };
 
   // @ts-ignore
@@ -198,7 +205,7 @@ export default function NiceTable() {
       editable: true,
       render: (tag) => (
         <>
-          {tag.map((t: string) => {
+          {unique(tag).map((t: string) => {
             let color = tag.length > 5 ? 'geekblue' : 'green';
             return (
               <Tag color={color} key={t}>
