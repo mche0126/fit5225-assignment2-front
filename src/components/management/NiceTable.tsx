@@ -154,8 +154,27 @@ export default function NiceTable() {
   // const [count, setCount] = useState(2);
 
   // TODO: delete the data in database
-  const handleDelete = (id: string) => {
-    const newData = dataSource.filter((item) => item.id !== id);
+  const handleDelete = (url: string) => {
+    let deleteImageURL: string = import.meta.env.VITE_IMAGE_DELETE.toString();
+    axios
+      .post(
+        deleteImageURL,
+        {
+          s3url: url,
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem('access-token'),
+          },
+        },
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    const newData = dataSource.filter((item) => item.url !== url);
     setDataSource(newData);
   };
 
@@ -197,7 +216,7 @@ export default function NiceTable() {
         dataSource.length >= 1 ? (
           <Popconfirm
             title="Sure to delete?"
-            onConfirm={() => handleDelete(record.id)}
+            onConfirm={() => handleDelete(record.url)}
           >
             <a>Delete</a>
           </Popconfirm>
