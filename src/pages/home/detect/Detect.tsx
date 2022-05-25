@@ -3,19 +3,7 @@ import { Button, PageHeader, Image, Row, Col, message } from 'antd';
 import DragInPicture from '@/components/uploadPic/DragInPicture';
 import ResultList from '@/components/detect/ResultList';
 import axios from 'axios';
-
-// generate a mock UUID (simple random string)
-// Source: https://juejin.cn/post/6844903943693139982
-// Author: 趁你还年轻233
-function randomString(length: number) {
-  const chars =
-    '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_=-';
-  let result = '';
-  for (let i = length; i > 0; --i) {
-    result += chars[Math.floor(Math.random() * chars.length)];
-  }
-  return result;
-}
+import { v4 as uuidv4 } from 'uuid';
 
 // eslint-disable-next-line no-unused-vars
 export default function Detect(this: any) {
@@ -52,7 +40,7 @@ export default function Detect(this: any) {
       .post(
         uploadImageURL,
         {
-          id: randomString(8),
+          id: uuidv4(),
           image: base64image,
           tag: data,
         },

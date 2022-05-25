@@ -10,8 +10,8 @@ const success = () => {
 
 // format of the image
 const contentStyle = {
-  height: '400px',
-  width: '400px',
+  height: 'auto',
+  width: '30%',
 };
 
 export default function UploadPic() {
@@ -19,8 +19,14 @@ export default function UploadPic() {
 
   // set the current, destroy the upload elements, display the result elements
   const uploadPic = () => {
-    success();
-    setCurrent(current + 1);
+    if (current === 0) {
+      success();
+      setCurrent(current + 1);
+    } else {
+      setCurrent(0);
+      success();
+      setCurrent(current + 1);
+    }
   };
 
   const uploadAnother = () => {
@@ -54,7 +60,7 @@ export default function UploadPic() {
       {current === 1 && (
         <div>
           <Row>
-            <Col span={12}>
+            <Col>
               <Carousel autoplay dotPosition="top">
                 {data.map((item) => {
                   return (
@@ -65,7 +71,7 @@ export default function UploadPic() {
                 })}
               </Carousel>
             </Col>
-            <Col span={12}>
+            <Col style={{ marginLeft: 20, width: 20 }}>
               <ResultList data={data} />
             </Col>
           </Row>
