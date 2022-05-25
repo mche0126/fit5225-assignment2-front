@@ -140,6 +140,9 @@ export default function NiceTable() {
         },
       })
       .then((res) => {
+        for (let i = 0; i < res.data.length; i++) {
+          res.data[i].tag = unique(res.data[i].tag);
+        }
         console.log(res);
         setDataSource(res.data);
       })
