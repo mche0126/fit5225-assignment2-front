@@ -4,6 +4,7 @@ import DragInPicture from '@/components/uploadPic/DragInPicture';
 import ResultList from '@/components/detect/ResultList';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
+import { unique } from '@/components/common'
 
 // eslint-disable-next-line no-unused-vars
 export default function Detect(this: any) {
@@ -40,7 +41,7 @@ export default function Detect(this: any) {
         {
           id: uuidv4(),
           image: base64image,
-          tag: data,
+          tag: unique(data),
         },
         {
           headers: {

@@ -4,6 +4,7 @@ import type { InputRef } from 'antd';
 import type { FormInstance } from 'antd/lib/form';
 import './niceTable.css';
 import axios from 'axios';
+import { unique } from '@/components/common'
 
 const EditableContext = React.createContext<FormInstance<any> | null>(null);
 
@@ -155,10 +156,6 @@ export default function NiceTable() {
     updateData();
   }
   // const [count, setCount] = useState(2);
-
-  function unique(arr: string[]) {
-    return Array.from(new Set(arr));
-  }
 
   const handleDelete = (url: string) => {
     console.log('delete request posted' + { url });
