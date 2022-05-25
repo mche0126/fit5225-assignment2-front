@@ -9,6 +9,8 @@ import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 import LoginSuccess from './pages/login/LoginSuccess';
 
+localStorage.clear();
+
 // React fragment or tsx component
 ReactDOM.render(
   <React.StrictMode>
