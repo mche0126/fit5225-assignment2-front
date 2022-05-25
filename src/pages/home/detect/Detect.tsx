@@ -21,7 +21,6 @@ export default function Detect(this: any) {
   const detect = (response: { data: { label: any } }, image: string) => {
     setCurrent(1);
     setBase64image(image);
-    // @ts-ignore
     let newData: string[] = [];
     response.data.label.map((d: string) => {
       newData.push(d);
