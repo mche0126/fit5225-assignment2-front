@@ -12,6 +12,7 @@ interface Item {
   id: string;
   url: string;
   tag: string[];
+  image: string;
 }
 
 interface EditableRowProps {
@@ -116,6 +117,7 @@ interface DataType {
   id: string;
   url: string;
   tag: string[];
+  image: string;
 }
 
 type ColumnTypes = Exclude<EditableTableProps['columns'], undefined>;
@@ -123,6 +125,7 @@ type ColumnTypes = Exclude<EditableTableProps['columns'], undefined>;
 export default function NiceTable() {
   const [dataSource, setDataSource] = useState<DataType[]>([
     {
+      image: 'Yo there!',
       id: 'Fetching data',
       url: 'Please wait',
       tag: ['Thank you'],
@@ -193,7 +196,21 @@ export default function NiceTable() {
     {
       title: 'ID',
       dataIndex: 'id',
-      width: '30%',
+      width: '10%',
+    },
+    {
+      title: 'Image',
+      dataIndex: 'image',
+      width: '20%',
+      render: (image, id) => (
+        <>
+          <img
+            width={100}
+            src={'data:image/jpeg;base64,' + image}
+            alt={id.toString()}
+          />
+        </>
+      ),
     },
     {
       title: 'URL',
