@@ -17,6 +17,7 @@ export default function UploadPic(this: any) {
   const [base64image, setBase64image] = useState('');
   const [data, setData] = useState([]);
   const [resultURL, setResultURL] = useState([]);
+  const [base64, setBase64] = useState([]);
 
   // cancel upload
   const uploadCancel = () => {
@@ -55,10 +56,13 @@ export default function UploadPic(this: any) {
       )
       .then((res) => {
         let newURLList: string[] = [];
+        let newImageList: String[] = [];
         res.data.data[0].map((record: any) => {
           newURLList.push(record.url);
+          newImageList.push('data:image/jpeg;base64,' + record.image);
         });
         setResultURL(newURLList);
+        setBase64(newImageList);
         setCurrent(2);
       });
   };
@@ -111,7 +115,7 @@ export default function UploadPic(this: any) {
           <Row>
             <Col span={12}>
               <Carousel autoplay dotPosition="top">
-                {resultURL.map((item) => {
+                {base64.map((item) => {
                   return (
                     <div key={data.indexOf(item)}>
                       <Image style={contentStyle} width={400} src={item} />

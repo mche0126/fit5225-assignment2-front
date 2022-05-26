@@ -4,7 +4,7 @@ import type { InputRef } from 'antd';
 import type { FormInstance } from 'antd/lib/form';
 import './niceTable.css';
 import axios from 'axios';
-import { unique } from '@/components/common'
+import { unique } from '@/components/common';
 
 const EditableContext = React.createContext<FormInstance<any> | null>(null);
 
