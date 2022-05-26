@@ -14,7 +14,7 @@ const contentStyle = {
 
 export default function UploadTag() {
   const [current, setCurrent] = useState(0);
-  const [data, setData] = useState([]);
+  const [resultURL, setResultURL] = useState([]);
 
   // set the current, destroy the upload elements, display the result elements
   // param:msg a callback could get the data inside the form
@@ -23,11 +23,11 @@ export default function UploadTag() {
     success();
     setCurrent(current + 1);
 
-    let newData: string[] = [];
+    let newResultURL: string[] = [];
     msg.map((record: any) => {
-      newData.push(record.url);
+      newResultURL.push(record.url);
     });
-    setData(newData);
+    setResultURL(newResultURL);
   };
 
   const uploadAnother = () => {
@@ -52,9 +52,9 @@ export default function UploadTag() {
           <Row>
             <Col span={12}>
               <Carousel autoplay dotPosition="top">
-                {data.map((item) => {
+                {resultURL.map((item) => {
                   return (
-                    <div key={data.indexOf(item)}>
+                    <div key={resultURL.indexOf(item)}>
                       <Image style={contentStyle} width={400} src={item} />
                     </div>
                   );
@@ -62,7 +62,7 @@ export default function UploadTag() {
               </Carousel>
             </Col>
             <Col span={12}>
-              <ResultList data={data} />
+              <ResultList data={resultURL} />
             </Col>
           </Row>
           <Button type="primary" onClick={uploadAnother}>
