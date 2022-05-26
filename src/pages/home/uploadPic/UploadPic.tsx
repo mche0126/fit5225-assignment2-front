@@ -8,7 +8,7 @@ import axios from 'axios';
 // format of the image
 const contentStyle = {
   height: 'auto',
-  width: '30%',
+  width: '400px',
 };
 
 // eslint-disable-next-line no-unused-vars

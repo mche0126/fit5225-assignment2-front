@@ -8,7 +8,7 @@ const success = () => {
 };
 
 const contentStyle = {
-  height: '400px',
+  height: 'auto',
   width: '400px',
 };
 
