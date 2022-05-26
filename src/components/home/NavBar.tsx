@@ -44,7 +44,7 @@ export default function NavBar(props: any) {
     let path = e.key;
     if (path === '/logout') {
       navigate.push('/login');
-      localStorage.removeItem('token');
+      localStorage.clear();
     } else {
       navigate.push(path);
     }
