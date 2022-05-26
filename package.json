@@ -1,10 +1,10 @@
 {
     "name": "fit5225-assignment2-front",
     "private": true,
-    "version": "0.0.1",
+    "version": "1.0.0",
     "scripts": {
         "dev": "vite --mode dev",
-        "build": "version-select && vite build --mode prod",
+        "build": "version-select && vite build",
         "lint": "eslint ./src --ext .jsx,.js,.ts,.tsx",
         "format": "prettier  --loglevel warn --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\"",
         "lint:fix": "eslint ./src --ext .jsx,.js,.ts,.tsx --fix && prettier --loglevel warn --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\""
